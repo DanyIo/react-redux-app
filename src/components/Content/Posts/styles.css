@@ -25,6 +25,7 @@
   text-decoration: none;
   transition: background-color 0.3s;
   border-radius: 5px;
+  cursor: pointer;
 }
 nav {
   display: flex;

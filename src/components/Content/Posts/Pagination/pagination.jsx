@@ -19,7 +19,6 @@ export default function Pagination({
           <li className="page-item" key={number}>
             <a
               className="page-link"
-              href="!#"
               key={number}
               onClick={() => paginate(number)}
               style={

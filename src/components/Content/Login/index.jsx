@@ -52,8 +52,7 @@ const Login = () => {
       Swal.fire({
         icon: "success",
         title: "Congrats!",
-        text: "Here your token ",
-        login,
+        text: `Here your token: ${login}`
       });
     }
   }, [data, login, status]);
