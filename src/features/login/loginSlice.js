@@ -34,7 +34,6 @@ const loginSlice = createSlice({
       })
       .addCase(fetchLogin.fulfilled, (state, action) => {
         state.login = action.payload;
-        console.log(action.payload);
         action.payload.error === undefined
           ? (state.login = action.payload)
           : (state.login = action.payload.error);
@@ -44,7 +43,6 @@ const loginSlice = createSlice({
       })
       .addCase(fetchLogin.rejected, (state, action) => {
         state.status = "failed";
-        console.log("failed");
         state.error = action.error.message;
       });
   },

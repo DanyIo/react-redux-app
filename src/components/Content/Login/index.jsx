@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik, Formik, Field, Form } from "formik";
 import * as yup from "yup";
-import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchLogin } from "../../../features/login/loginSlice";
+import {
+  fetchLogin,
+  resetLoginStatus,
+} from "../../../features/login/loginSlice";
 import Swal from "sweetalert2";
-import { resetLoginStatus } from "../../../features/login/loginSlice";
 
 const validationSchema = yup.object({
   email: yup
@@ -41,7 +42,6 @@ const Login = () => {
   });
 
   useEffect(() => {
-    console.log(login);
     if (status === "error") {
       Swal.fire({
         icon: "error",
