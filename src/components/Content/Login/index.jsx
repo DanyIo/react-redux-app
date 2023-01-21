@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchLogin } from "../../../features/login/loginSlice";
 import Swal from "sweetalert2";
+import { resetLoginStatus } from "../../../features/login/loginSlice";
 
 const validationSchema = yup.object({
   email: yup
@@ -47,15 +48,16 @@ const Login = () => {
         title: "Oops...",
         text: login,
       });
-    }
-    if (status === "succeeded") {
+      dispatch(resetLoginStatus());
+    } else if (status === "succeeded") {
       Swal.fire({
         icon: "success",
         title: "Congrats!",
-        text: `Here your token: ${login}`
+        text: `Here your token: ${login}`,
       });
+      dispatch(resetLoginStatus());
     }
-  }, [data, login, status]);
+  }, [data, login, status, dispatch]);
 
   return (
     <div>
@@ -63,6 +65,7 @@ const Login = () => {
         <Form onSubmit={formik.handleSubmit} style={{ padding: 100 }}>
           <label htmlFor="email"></label>
           <Field
+            placeHolder="email"
             id="email"
             name="email"
             label="Email"
@@ -78,6 +81,7 @@ const Login = () => {
           )}
           <label htmlFor="lastName"></label>
           <Field
+            placeHolder="password"
             id="password"
             name="password"
             label="Password"

@@ -22,7 +22,11 @@ export const fetchLogin = createAsyncThunk(
 const loginSlice = createSlice({
   name: "login",
   initialState: initialData,
-  reducers: {},
+  reducers: {
+    resetLoginStatus: (state) => {
+      state.status = "idle";
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchLogin.pending, (state) => {
@@ -45,5 +49,7 @@ const loginSlice = createSlice({
       });
   },
 });
+
+export const { resetLoginStatus } = loginSlice.actions;
 
 export default loginSlice.reducer;
